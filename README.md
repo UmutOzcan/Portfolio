@@ -15,8 +15,5 @@ My Portfolio website.
 - Bootstrap
 - JS
 - N Tier Architecture
--
--
--
 
 ### Still Developing 🚀🚀
