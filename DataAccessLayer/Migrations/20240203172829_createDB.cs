@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class createDb : Migration
+    public partial class createDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,8 @@ namespace DataAccessLayer.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LinkedIn = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GitHub = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -100,11 +101,28 @@ namespace DataAccessLayer.Migrations
                     ProjectID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Projects", x => x.ProjectID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Quotes",
+                columns: table => new
+                {
+                    QuoteID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Person = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Quotes", x => x.QuoteID);
                 });
 
             migrationBuilder.CreateTable(
@@ -150,22 +168,6 @@ namespace DataAccessLayer.Migrations
                 {
                     table.PrimaryKey("PK_SocialMedias", x => x.SocailMediaID);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Testimonials",
-                columns: table => new
-                {
-                    TestimonialID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Company = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Testimonials", x => x.TestimonialID);
-                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -189,6 +191,9 @@ namespace DataAccessLayer.Migrations
                 name: "Projects");
 
             migrationBuilder.DropTable(
+                name: "Quotes");
+
+            migrationBuilder.DropTable(
                 name: "Services");
 
             migrationBuilder.DropTable(
@@ -196,9 +201,6 @@ namespace DataAccessLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "SocialMedias");
-
-            migrationBuilder.DropTable(
-                name: "Testimonials");
         }
     }
 }

@@ -8,7 +8,7 @@ namespace DataAccessLayer.Concrete
         // DB baglanti
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-S4O1A1P;database=PortfolioDB;integrated security=true");
+            optionsBuilder.UseSqlServer("server=UMUT;database=PortfolioDB;integrated security=true");
         }
 
         //public DbSet<C#Sınıf> DBName
